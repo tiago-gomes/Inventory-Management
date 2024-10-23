@@ -55,7 +55,7 @@ This API provides a system for efficiently managing product inventory. It allows
 # Task Breakdown
 
 ## Main Task 1: Setup Project Structure
-- **Sub-task 1.1**: Initialize docker compose
+- **Sub-task 1.1**: Initialize docker compose [PR Example #1](https://github.com/tiago-gomes/Inventory-Management/pull/12)
 - **Sub-task 1.2**: Initialize Laravel Project
 - **Sub-task 1.3**: Set up Git repository
 - **Sub-task 1.4**: Configure environment variables
