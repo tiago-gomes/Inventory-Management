@@ -91,17 +91,28 @@ This API provides a system for efficiently managing product inventory. It allows
 - **Sub-task 6.4**: Protect API endpoints with authentication middleware
 
 ## Current Environment
-| Property             | Value        |
-|----------------------|--------------|
-| **Application Name**  | inventory    |
-| **Laravel Version**   | 11.29.0      |
-| **PHP Version**       | 8.3.1        |
-| **Composer Version**  | 2.6.6        |
-| **Environment**       | local        |
-| **Debug Mode**        | ENABLED      |
-| **URL**               | localhost    |
-| **Maintenance Mode**  | OFF          |
-| **Timezone**          | UTC          |
-| **Locale**            | en           |
+
+# Application Information
+
+- **Application Name:** inventory
+- **Laravel Version:** 11.29.0
+- **PHP Version:** 8.3.1
+- **Composer Version:** 2.6.6
+- **Environment:** local
+- **Debug Mode:** ENABLED
+- **URL:** localhost
+- **Maintenance Mode:** OFF
+- **Timezone:** GMT
+- **Locale:** en
+
+# Application Drivers
+
+- **Broadcasting:** log
+- **Cache:** redis
+- **Database:** mysql
+- **Logs:** stack / single
+- **Mail:** log
+- **Queue:** redis
+- **Session:** database
 
 
