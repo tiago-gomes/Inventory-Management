@@ -57,8 +57,8 @@ This API provides a system for efficiently managing product inventory. It allows
 ## Main Task 1: Setup Project Structure
 - **Sub-task 1.1**: ~~Initialize docker compose~~
 - **Sub-task 1.2**: ~~Initialize Laravel Project~~
-- **Sub-task 1.3**: Configure environment variables
-- **Sub-task 1.4**: Install required packages (e.g., Laravel Sanctum for authentication)
+- **Sub-task 1.3**: ~~Configure environment variables~~
+- **Sub-task 1.4**: ~~Install required packages (e.g., Laravel Sanctum for authentication)~~
 
 ## Main Task 2: Database Design
 - **Sub-task 2.1**: Create Inventory migration table 
