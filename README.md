@@ -2,22 +2,6 @@
 
 This API provides a system for efficiently managing product inventory. It allows users to keep track of product details, suppliers, and current stock levels, ensuring that businesses can monitor inventory in real-time, update stock quantities, and handle supply logistics. The API supports essential operations like adding, updating, and deleting products, managing stock levels, and retrieving supplier information. It also includes built-in authentication to secure access and prevent unauthorized use.
 
-## Current Environment
-
-| Property             | Value        |
-|----------------------|--------------|
-| **Application Name**  | inventory    |
-| **Laravel Version**   | 11.29.0      |
-| **PHP Version**       | 8.3.1        |
-| **Composer Version**  | 2.6.6        |
-| **Environment**       | local        |
-| **Debug Mode**        | ENABLED      |
-| **URL**               | localhost    |
-| **Maintenance Mode**  | OFF          |
-| **Timezone**          | UTC          |
-| **Locale**            | en           |
-
-
 ## Key Features
 
 - **Product Management**: 
@@ -71,11 +55,10 @@ This API provides a system for efficiently managing product inventory. It allows
 # Task Breakdown
 
 ## Main Task 1: Setup Project Structure
-- **Sub-task 1.1**: Initialize docker compose [PR Example #1](https://github.com/tiago-gomes/Inventory-Management/pull/12)
-- **Sub-task 1.2**: Initialize Laravel Project
-- **Sub-task 1.3**: Set up Git repository
-- **Sub-task 1.4**: Configure environment variables
-- **Sub-task 1.5**: Install required packages (e.g., Laravel Sanctum for authentication)
+- **Sub-task 1.1**: ~~Initialize docker compose~~
+- **Sub-task 1.2**: ~~Initialize Laravel Project~~
+- **Sub-task 1.3**: Configure environment variables
+- **Sub-task 1.4**: Install required packages (e.g., Laravel Sanctum for authentication)
 
 ## Main Task 2: Database Design
 - **Sub-task 2.1**: Create Inventory migration table 
@@ -106,3 +89,19 @@ This API provides a system for efficiently managing product inventory. It allows
 - **Sub-task 6.2**: Create user registration endpoint
 - **Sub-task 6.3**: Create user login endpoint
 - **Sub-task 6.4**: Protect API endpoints with authentication middleware
+
+## Current Environment
+| Property             | Value        |
+|----------------------|--------------|
+| **Application Name**  | inventory    |
+| **Laravel Version**   | 11.29.0      |
+| **PHP Version**       | 8.3.1        |
+| **Composer Version**  | 2.6.6        |
+| **Environment**       | local        |
+| **Debug Mode**        | ENABLED      |
+| **URL**               | localhost    |
+| **Maintenance Mode**  | OFF          |
+| **Timezone**          | UTC          |
+| **Locale**            | en           |
+
+
