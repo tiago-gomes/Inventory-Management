@@ -2,6 +2,22 @@
 
 This API provides a system for efficiently managing product inventory. It allows users to keep track of product details, suppliers, and current stock levels, ensuring that businesses can monitor inventory in real-time, update stock quantities, and handle supply logistics. The API supports essential operations like adding, updating, and deleting products, managing stock levels, and retrieving supplier information. It also includes built-in authentication to secure access and prevent unauthorized use.
 
+## Current Environment
+
+| Property             | Value        |
+|----------------------|--------------|
+| **Application Name**  | inventory    |
+| **Laravel Version**   | 11.29.0      |
+| **PHP Version**       | 8.3.1        |
+| **Composer Version**  | 2.6.6        |
+| **Environment**       | local        |
+| **Debug Mode**        | ENABLED      |
+| **URL**               | localhost    |
+| **Maintenance Mode**  | OFF          |
+| **Timezone**          | UTC          |
+| **Locale**            | en           |
+
+
 ## Key Features
 
 - **Product Management**: 
