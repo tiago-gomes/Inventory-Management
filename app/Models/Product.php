@@ -23,10 +23,9 @@ class Product extends Model
     // Optionally, you can define the timestamps
     public $timestamps = true; // This is true by default
 
-    /** Define relationships if needed
+    //Define relationships if needed
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);
     }
-    **/
 }
