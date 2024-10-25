@@ -69,7 +69,7 @@ This API provides a system for efficiently managing product inventory. It allows
 - **Sub-task 3.1**: ~~Create Inventory Model, Factory and Seeders~~
 - **Sub-task 3.2**: ~~Create Product Model, Factory and Seeders~~
 - **Sub-task 3.3**: ~~Create Supplier Model, Factory and Seeders~~
-- **Sub-task 3.4**: Register Seeders when we do migrate:fresh --seed
+- **Sub-task 3.4**: ~~Register Seeders when we do migrate:fresh --seed~~
   
 ## Main Task 4: Develop Required Services and Tests
 - **Sub-task 4.1**: Create Inventory Services and tests
