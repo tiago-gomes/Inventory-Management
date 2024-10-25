@@ -61,9 +61,9 @@ This API provides a system for efficiently managing product inventory. It allows
 - **Sub-task 1.4**: ~~Install required packages (e.g., Laravel Sanctum for authentication)~~
 
 ## Main Task 2: Database Design
-- **Sub-task 2.1**: Create Inventory migration table 
-- **Sub-task 2.2**: Create Product migration table
-- **Sub-task 2.3**: Create Supplier migration table
+- **Sub-task 2.1**: ~~Create Inventory migration table~~
+- **Sub-task 2.2**: ~~Create Product migration table~~
+- **Sub-task 2.3**: ~~Create Supplier migration table~~
 
 ## Main Task 3: Implement Models, Factory and Seeders
 - **Sub-task 3.1**: Create Inventory Model, Factory and Seeders
