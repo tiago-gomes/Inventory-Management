@@ -70,25 +70,26 @@ This API provides a system for efficiently managing product inventory. It allows
 - **Sub-task 3.2**: ~~Create Product Model, Factory and Seeders~~
 - **Sub-task 3.3**: ~~Create Supplier Model, Factory and Seeders~~
 - **Sub-task 3.4**: ~~Register Seeders when we do migrate:fresh --seed~~
+
+## Main Task 4: Implement Authentication
+- **Sub-task 4.1**: Set up user authentication (e.g., Laravel Sanctum)
+- **Sub-task 4.2**: Create user registration endpoint
+- **Sub-task 4.3**: Create user login endpoint
+- **Sub-task 4.4**: Protect API endpoints with authentication middleware
+- **Sub-task 4.5**: Update migrations, models, factories, seeders to support users
   
-## Main Task 4: Develop Required Services and Tests
-- **Sub-task 4.1**: Create Inventory Services and tests
-- **Sub-task 4.2**: Create Product Services and tests
-- **Sub-task 4.3**: Create Supplier Services and tests
-
-## Main Task 5: Develop API Endpoints
-- **Sub-task 5.1**: Create endpoint to get all products
-- **Sub-task 5.2**: Create endpoint to get a specific product
-- **Sub-task 5.3**: Create endpoint to create a new product
-- **Sub-task 5.4**: Create endpoint to update a product
-- **Sub-task 5.5**: Create endpoint to delete a product
-- **Sub-task 5.6**: Create endpoint to manage inventory levels (add/remove stock)
-
-## Main Task 6: Implement Authentication
-- **Sub-task 6.1**: Set up user authentication (e.g., Laravel Sanctum)
-- **Sub-task 6.2**: Create user registration endpoint
-- **Sub-task 6.3**: Create user login endpoint
-- **Sub-task 6.4**: Protect API endpoints with authentication middleware
+## Main Task 5: Develop Required Services and Tests
+- **Sub-task 5.1**: Create Inventory Services and tests
+- **Sub-task 5.2**: Create Product Services and tests
+- **Sub-task 5.3**: Create Supplier Services and tests
+- 
+## Main Task 6: Develop API Endpoints
+- **Sub-task 6.1**: Create endpoint to get all products
+- **Sub-task 6.2**: Create endpoint to get a specific product
+- **Sub-task 6.3**: Create endpoint to create a new product
+- **Sub-task 6.4**: Create endpoint to update a product
+- **Sub-task 6.5**: Create endpoint to delete a product
+- **Sub-task 6.6**: Create endpoint to manage inventory levels (add/remove stock)
 
 ## Current Environment
 
