@@ -75,7 +75,8 @@ This API provides a system for efficiently managing product inventory. It allows
 - **Sub-task 4.1**: ~~Update migrations, models, factories, seeders to support users~~
 - **Sub-task 4.2**: Create user registration endpoint
 - **Sub-task 4.3**: Create user login endpoint
-- **Sub-task 4.4**: Protect API endpoints with authentication middleware
+- **Sub-task 4.4**: Create password recovery endpoint
+- **Sub-task 4.5**: Protect API endpoints with authentication middleware
   
 ## Main Task 5: Develop Required Services and Tests
 - **Sub-task 5.1**: Create Inventory Services and tests
