@@ -82,7 +82,7 @@ This API provides a system for efficiently managing product inventory. It allows
 - **Sub-task 5.1**: Create Inventory Services and tests
 - **Sub-task 5.2**: Create Product Services and tests
 - **Sub-task 5.3**: Create Supplier Services and tests
-- 
+
 ## Main Task 6: Develop API Endpoints
 - **Sub-task 6.1**: Create endpoint to get all products
 - **Sub-task 6.2**: Create endpoint to get a specific product
