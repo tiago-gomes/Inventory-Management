@@ -16,10 +16,10 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word,
-            'description' => $this->faker->sentence,
-            'price' => $this->faker->randomFloat(2, 1, 100), // Price between 1 and 100
-            'supplier_id' => Supplier::factory(), // Assuming you have a Supplier factory
+            'name' => fake()->word,
+            'description' => fake()->sentence,
+            'price' => fake()->randomFloat(2, 1, 100), // Price between 1 and 100
+            'supplier_id' => Supplier::factory()->create()->id, // Assuming you have a Supplier factory
         ];
     }
 }

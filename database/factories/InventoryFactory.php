@@ -14,8 +14,8 @@ class InventoryFactory extends Factory
     {
         return [
             'product_id' => Product::factory(), // Creates a new Product for reference
-            'quantity' => $this->faker->numberBetween(0, 100),
-            'threshold' => $this->faker->numberBetween(1, 20),
+            'quantity' => fake()->numberBetween(0, 100),
+            'threshold' => fake()->numberBetween(1, 20),
         ];
     }
 }
