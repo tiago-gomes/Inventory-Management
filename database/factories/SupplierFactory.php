@@ -16,12 +16,12 @@ class SupplierFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->company,
-            'address' => $this->faker->address,
-            'email' => $this->faker->unique()->safeEmail,
-            'phone' => $this->faker->phoneNumber,
-            'mobile' => $this->faker->phoneNumber,
-            'fax' => $this->faker->optional()->phoneNumber,
+            'name' => fake()->company,
+            'address' => fake()->address,
+            'email' => fake()->unique()->safeEmail,
+            'phone' => fake()->phoneNumber,
+            'mobile' => fake()->phoneNumber,
+            'fax' => fake()->optional()->phoneNumber,
         ];
     }
 }
