@@ -78,9 +78,14 @@ This API provides a system for efficiently managing product inventory. It allows
 - **Sub-task 4.4**: ~~Protect API endpoints with authentication middleware~~
   
 ## Main Task 5: Develop Required Services and Tests
-- **Sub-task 5.1**: Create Inventory Services and tests
-- **Sub-task 5.2**: Create Product Services and tests
-- **Sub-task 5.3**: Create Supplier Services and tests
+- **Sub-task 5.1**: Create Product Services and tests
+- **Sub-task 5.1.1**: Create Product and tests
+- **Sub-task 5.1.2**: View Product and tests
+- **Sub-task 5.1.3**: Update Product and tests
+- **Sub-task 5.1.4**: Delete Product and tests
+- **Sub-task 5.1.5**: Search products and tests
+- **Sub-task 5.2**: Create Supplier Services and tests
+- **Sub-task 5.3**: Create Inventory Services and tests
 
 ## Main Task 6: Develop API Endpoints
 - **Sub-task 6.1**: Create endpoint to get all products
