@@ -203,5 +203,26 @@ class ProductServiceTest extends TestCase
         $this->productService->update(999, $item);
     }
 
+    public function test_successful_delete()
+    {
+        // Arrange: Create a product using the factory
+        $product = Product::factory()->create();
 
+        // Act: Attempt to delete the product
+        $result = $this->productService->delete($product->id);
+
+        // Assert: Verify that delete returns true and the product no longer exists
+        $this->assertTrue($result);
+        $this->assertDatabaseMissing('products', ['id' => $product->id]);
+    }
+
+    public function test_product_not_found_when_deleting()
+    {
+        // Expect an exception for a non-existent product
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Product does not exist");
+
+        // Act: Attempt to delete a non-existing product
+        $this->productService->delete(9999); // Assuming 9999 does not exist
+    }
 }
