@@ -46,7 +46,7 @@ class ProductService implements ProductServiceInterface
 
     public function create(array $item): Product
     {
-
+        // validate Item
         $this->validate($item);
 
         // check if product exists
