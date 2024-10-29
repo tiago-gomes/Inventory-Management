@@ -84,4 +84,20 @@ class ProductService implements ProductServiceInterface
 
         return $product;
     }
+
+    public function delete(int $product_id): bool
+    {
+        /** * @var Product $product */
+        $product = Product::find($product_id);
+        if (!$product) {
+            throw new \Exception("Product does not exist", 422);
+        }
+
+        $delete = $product->delete();
+        if (!$delete) {
+            throw new \Exception("Failed to delete product", 500);
+        }
+
+        return $delete;
+    }
 }
