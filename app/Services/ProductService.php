@@ -27,28 +27,35 @@ class ProductService implements ProductServiceInterface
         }
     }
 
+    public function checkIfProductExists(string $name)
+    {
+        // check if product exists
+        $product = Product::where('name', $name)->first();
+        if ($product) {
+            throw new \Exception("Product already exists", 422);
+        }
+    }
+
+    public function checkIfSupplierExists(int $supplier_id)
+    {
+        $supplier = Supplier::where('id', $supplier_id)->first();
+        if (!$supplier) {
+            throw new \Exception("Supplier does not exist", 422);
+        }
+    }
+
     public function create(array $item): Product
     {
 
         $this->validate($item);
 
         // check if product exists
-        $product = Product::where('name', $item['name'])->first();
-        if ($product) {
-            throw new \Exception("Product already exists", 422);
-        }
+        $this->checkIfProductExists($item['name']);
 
         // check if supplier exists
-        $supplier = Supplier::where('id', $item['supplier_id'])->first();
-        if (!$supplier) {
-            throw new \Exception("Supplier does not exist", 422);
-        }
+        $this->checkIfSupplierExists($item['supplier_id']);
 
-        // check if price is valid
-        if ($item['price'] <= 0) {
-            throw new \Exception("Invalid price", 422);
-        }
-
+        // create product
         return Product::create($item);
     }
 }
