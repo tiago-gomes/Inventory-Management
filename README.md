@@ -81,7 +81,7 @@ This API provides a system for efficiently managing product inventory. It allows
 - **Sub-task 5.1**: ~~Create Product Services and tests~~
 - **Sub-task 5.1.1**: ~~Create Product and tests~~
 - **Sub-task 5.1.2**: View Product and tests
-- **Sub-task 5.1.3**: Update Product and tests
+- **Sub-task 5.1.3**: ~~Update Product and tests~~
 - **Sub-task 5.1.4**: Delete Product and tests
 - **Sub-task 5.1.5**: Search products and tests
 - -----------
