@@ -157,4 +157,51 @@ class ProductServiceTest extends TestCase
             'supplier_id' => 9999, // Assuming this ID does not exist
         ]);
     }
+
+    public function test_product_successful_update()
+    {
+        $supplier = Supplier::factory()->create();
+
+        // Arrange: Create a product using the factory
+        $product = Product::factory()->create([
+            'name' => 'Old Product',
+            'description' => 'Old description',
+            'price' => 10,
+            'supplier_id' => $supplier->id
+        ]);
+
+        // Act: Update the product
+        $item = [
+            'name' => 'Updated Product',
+            'description' => 'Old description',
+            'price' => 10,
+            'supplier_id' => $supplier->id,
+        ];
+
+        $updatedProduct = $this->productService->update($product->id, $item);
+
+        // Assert: Verify the product is updated
+        $this->assertInstanceOf(Product::class, $updatedProduct);
+        $this->assertEquals('Updated Product', $updatedProduct->name);
+    }
+
+    public function test_product_does_not_exist_when_trying_to_update()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Product does not exist");
+
+        $supplier = Supplier::factory()->create();
+
+        // Act: Update the product
+        $item = [
+            'name' => 'Updated Product',
+            'description' => 'Old description',
+            'price' => 10,
+            'supplier_id' => $supplier->id,
+        ];
+
+        $this->productService->update(999, $item);
+    }
+
+
 }
