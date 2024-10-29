@@ -29,6 +29,9 @@ class ProductService implements ProductServiceInterface
 
     public function create(array $item): Product
     {
+
+        $this->validate($item);
+
         // check if product exists
         $product = Product::where('name', $item['name'])->first();
         if ($product) {
