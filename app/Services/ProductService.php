@@ -58,4 +58,30 @@ class ProductService implements ProductServiceInterface
         // create product
         return Product::create($item);
     }
+
+    public function update(int $product_id, array $item): Product
+    {
+        // validate item
+        $this->validate($item);
+
+        // check if product exists
+        $this->checkIfProductExists($item['name']);
+
+        // check if supplier exists
+        $this->checkIfSupplierExists($item['supplier_id']);
+
+        /** * @var Product $product */
+        $product = Product::find($product_id);
+        if (!$product) {
+            throw new \Exception("Product does not exist", 422);
+        }
+
+        // trying to update product
+        $updated = $product->update($item);
+        if (!$updated) {
+            throw new \Exception("Failed to update product", 500);
+        }
+
+        return $product;
+    }
 }
