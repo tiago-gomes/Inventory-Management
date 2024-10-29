@@ -129,13 +129,20 @@ class ProductServiceTest extends TestCase
     public function test_create_product_throws_exception_if_product_exists()
     {
         // Arrange: Prepare data for an existing product
-        $existingProduct = Product::factory()->create(['name' => 'Existing Product']);
+        $existingProduct = Product::factory()->create([
+            'name' => 'Existing Product',
+            'description' => 'Existing Description',
+        ]);
 
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage("Product already exists");
 
         // Act: Try to create a product with the same name
-        $this->productService->create(['name' => 'Existing Product']);
+        $this->productService->create([
+            'name' => 'Existing Product',
+            'description' => 'Existing Description',
+            'price' => 100.00,
+        ]);
     }
 
     public function test_create_product_throws_exception_if_supplier_does_not_exist()
@@ -145,6 +152,7 @@ class ProductServiceTest extends TestCase
 
         $this->productService->create([
             'name' => 'New Product',
+            'description' => 'Description Product',
             'price' => 100.00,
             'supplier_id' => 9999, // Assuming this ID does not exist
         ]);
