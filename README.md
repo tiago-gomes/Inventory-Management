@@ -93,11 +93,11 @@ This API provides a system for efficiently managing product inventory. It allows
 - **Sub-task 5.2.5**: Search Supplier and tests
 - -----------
 - **Sub-task 5.3**: Create Inventory Services and tests
-- **Sub-task 5.3.1**: Create Supplier and tests
-- **Sub-task 5.3.2**: View Supplier and tests
-- **Sub-task 5.3.3**: Update Supplier and tests
-- **Sub-task 5.3.4**: Delete Supplier and tests
-- **Sub-task 5.3.5**: Search Supplier and tests
+- **Sub-task 5.3.1**: Create Inventory and tests
+- **Sub-task 5.3.2**: View Inventory and tests
+- **Sub-task 5.3.3**: Update Inventory and tests
+- **Sub-task 5.3.4**: Delete Inventory and tests
+- **Sub-task 5.3.5**: Search Inventory and tests
 
 ## Main Task 6: Develop API Endpoints
 - **Sub-task 6.1**: Create endpoint to get all products
