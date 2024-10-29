@@ -104,7 +104,7 @@ This API provides a system for efficiently managing product inventory. It allows
 - **Sub-task 6.1.1**: Create endpoint to create a new product
 - **Sub-task 6.1.2**: Create endpoint to update a product
 - **Sub-task 6.1.3**: Create endpoint to delete a product
-- **Sub-task 6.1.4**: Create endpoint to view a product
+- **Sub-task 6.1.4**: Create endpoint to view a product and existing inventory
 - **Sub-task 6.1.5**: Create endpoint to search a products
 - ---------
 - **Sub-task 6.2**: Create endpoints to manage inventory levels (add/remove stock)
@@ -113,10 +113,10 @@ This API provides a system for efficiently managing product inventory. It allows
 - **Sub-task 6.2.3**: Create endpoint to delete inventory
 - --------
 - **Sub-task 6.3**: Create endpoints to manage Suppliers (add/remove stock)
-- **Sub-task 6.1.1**: Create endpoint to create a new supplier
-- **Sub-task 6.1.1**: Create endpoint to update a supplier
-- **Sub-task 6.1.1**: Create endpoint to delete a supplier
-- **Sub-task 6.1.1**: Create endpoint to view a supplier
+- **Sub-task 6.3.1**: Create endpoint to create a new supplier
+- **Sub-task 6.3.1**: Create endpoint to update a supplier
+- **Sub-task 6.3.1**: Create endpoint to delete a supplier
+- **Sub-task 6.3.1**: Create endpoint to view a supplier
 
 ## Current Environment
 
