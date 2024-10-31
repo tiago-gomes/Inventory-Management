@@ -421,4 +421,31 @@ class ProductServiceTest extends TestCase
 
         $this->assertEquals($sortedNames, $names); // Check if names are in ascending order
     }
+
+    public function test_view_returns_product_when_product_exists()
+    {
+        // Create a product using the factory
+        $product = Product::factory()->create();
+
+        // Call the view method with the product ID
+        $result = $this->productService->view($product->id);
+
+        // Assert that the returned product matches the created product
+        $this->assertInstanceOf(Product::class, $result);
+        $this->assertEquals($product->id, $result->id);
+        $this->assertEquals($product->name, $result->name); // Add other attributes as necessary
+    }
+
+    public function test_view_throws_exception_when_product_does_not_exist()
+    {
+        // Use a product ID that does not exist
+        $nonExistentProductId = 9999; // Assuming this ID does not exist
+
+        // Assert that an exception is thrown when trying to view the non-existent product
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Product does not exist");
+
+        // Call the view method
+        $this->productService->view($nonExistentProductId);
+    }
 }

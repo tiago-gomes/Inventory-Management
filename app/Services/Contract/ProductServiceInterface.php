@@ -10,7 +10,7 @@ interface ProductServiceInterface
 {
     public function search(array $search_attributes, array $pagination_attributes): LengthAwarePaginator;
 
-    //public function view(int $product_id): Product;
+    public function view(int $product_id): Product;
 
     public function create(array $item): Product;
 
