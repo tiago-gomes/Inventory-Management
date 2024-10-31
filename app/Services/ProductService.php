@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Supplier;
 use App\Models\Product;
 use App\Services\Contract\ProductServiceInterface;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductService implements ProductServiceInterface
 {
@@ -42,6 +43,72 @@ class ProductService implements ProductServiceInterface
         if (!$supplier) {
             throw new \Exception("Supplier does not exist", 422);
         }
+    }
+
+    public function search(array $search_attributes, array $pagination_attributes): LengthAwarePaginator
+    {
+        // Set default pagination values if they're not set or not numeric
+        $pagination_attributes['per_page'] = isset($pagination_attributes['per_page']) && is_numeric($pagination_attributes['per_page'])
+            ? (int) $pagination_attributes['per_page']
+            : 15;
+
+        $pagination_attributes['page'] = isset($pagination_attributes['page']) && is_numeric($pagination_attributes['page'])
+            ? (int) $pagination_attributes['page']
+            : 1;
+
+        // Set default search attributes
+        $search_attributes['order_by'] = isset($search_attributes['order_by']) && strtolower($search_attributes['order_by'])=='asc' && strtolower($search_attributes['order_by'])=='desc'
+            ? $search_attributes['order_by']
+            : 'asc';
+
+        $search_attributes['order_field'] = isset($search_attributes['order_field'])
+            ? $search_attributes['order_field']
+            : 'id';
+
+        switch ($search_attributes['order_field']) {
+            case 'name':
+                $search_attributes['order_field'] = 'name';
+                break;
+            case 'description':
+                $search_attributes['order_field'] = 'description';
+                break;
+            case 'price':
+                $search_attributes['order_field'] = 'description';
+                break;
+            case 'supplier_name':
+                $search_attributes['order_field'] = 'supplier_name';
+                break;
+            default:
+                $search_attributes['order_field'] = 'id';
+                break;
+        }
+
+        // search the products table or associate tables.
+        $products = Product::query()
+            ->when($search_attributes['name'] ?? null,function ($query, $name) {
+                return $query->where('name', $name);
+            })
+            ->when($search_attributes['description'] ?? null,function ($query, $description) {
+                return $query->where('description', $description);
+            })
+            ->when($search_attributes['price'] ?? null,function ($query, $price) {
+                return $query->where('price', $price);
+            })
+            ->when($search_attributes['supplier_name'] ?? null,function ($query, $supplier_name) {
+                return $query->whereHas('supplier', function ($query) use ($supplier_name) {
+                    $query->where('name', $supplier_name);
+                });
+            })
+            ->orderBy($search_attributes['order_field'], $search_attributes['order_by'])
+            ->paginate(
+                $pagination_attributes['per_page'],
+                ['*'],
+                'page',
+                $pagination_attributes['page']
+            );
+
+        // return colletions of products found per page
+        return $products;
     }
 
     public function create(array $item): Product

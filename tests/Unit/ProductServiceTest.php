@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Mockery;
 use App\Models\Supplier;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductServiceTest extends TestCase
 {
@@ -224,5 +225,200 @@ class ProductServiceTest extends TestCase
 
         // Act: Attempt to delete a non-existing product
         $this->productService->delete(9999); // Assuming 9999 does not exist
+    }
+
+    public function test_search_applies_default_pagination()
+    {
+        Product::factory()->count(20)->create(); // Creating sample products
+
+        $searchAttributes = [];
+        $paginationAttributes = [];
+
+        $result = $this->productService->search($searchAttributes, $paginationAttributes);
+
+        $this->assertInstanceOf(LengthAwarePaginator::class, $result);
+        $this->assertEquals(15, $result->perPage());
+        $this->assertEquals(1, $result->currentPage());
+    }
+
+    public function test_search_filters_by_name()
+    {
+        Product::factory()->create(['name' => 'Product1']);
+        Product::factory()->count(5)->create(); // Other products
+
+        $searchAttributes = ['name' => 'Product1'];
+        $paginationAttributes = ['per_page' => 5, 'page' => 1];
+
+        $result = $this->productService->search($searchAttributes, $paginationAttributes);
+
+        $this->assertInstanceOf(LengthAwarePaginator::class, $result);
+
+        foreach ($result->items() as $item) {
+            $this->assertEquals('Product1', $item->name);
+        }
+    }
+
+    public function test_search_filters_by_description()
+    {
+        Product::factory()->create(['description' => 'High-quality product']);
+        Product::factory()->count(5)->create();
+
+        $searchAttributes = ['description' => 'High-quality product'];
+        $paginationAttributes = ['per_page' => 5, 'page' => 1];
+
+        $result = $this->productService->search($searchAttributes, $paginationAttributes);
+
+        foreach ($result->items() as $item) {
+            $this->assertEquals('High-quality product', $item->description);
+        }
+    }
+
+    public function test_search_filters_by_price()
+    {
+        Product::factory()->create(['price' => 99.99]);
+        Product::factory()->count(5)->create();
+
+        $searchAttributes = ['price' => 99.99];
+        $paginationAttributes = [];
+
+        $result = $this->productService->search($searchAttributes, $paginationAttributes);
+
+        foreach ($result->items() as $item) {
+            $this->assertEquals(99.99, $item->price);
+        }
+    }
+
+    public function test_search_filters_by_supplier_name()
+    {
+        $supplier = Supplier::factory()->create(['name' => 'Supplier1']);
+        Product::factory()->for($supplier, 'supplier')->create();
+        Product::factory()->count(5)->create();
+
+        $searchAttributes = ['supplier_name' => 'Supplier1'];
+        $paginationAttributes = [];
+
+        $result = $this->productService->search($searchAttributes, $paginationAttributes);
+
+        foreach ($result->items() as $item) {
+            $this->assertEquals('Supplier1', $item->supplier->name);
+        }
+    }
+
+    public function test_search_filters_by_multiple_attributes()
+    {
+        $supplier = Supplier::factory()->create(['name' => 'Supplier1']);
+        Product::factory()->create([
+            'name' => 'Product1',
+            'price' => 99.99,
+            'supplier_id' => $supplier->id
+        ]);
+        Product::factory()->count(5)->create();
+
+        $searchAttributes = [
+            'name' => 'Product1',
+            'price' => 99.99,
+            'supplier_name' => 'Supplier1'
+        ];
+        $paginationAttributes = [];
+
+        $result = $this->productService->search($searchAttributes, $paginationAttributes);
+
+        foreach ($result->items() as $item) {
+            $this->assertEquals('Product1', $item->name);
+            $this->assertEquals(99.99, $item->price);
+            $this->assertEquals('Supplier1', $item->supplier->name);
+        }
+    }
+
+    public function test_search_handles_invalid_pagination_values()
+    {
+        Product::factory()->count(20)->create();
+
+        $searchAttributes = [];
+        $paginationAttributes = ['per_page' => 'invalid', 'page' => 'invalid'];
+
+        $result = $this->productService->search($searchAttributes, $paginationAttributes);
+
+        $this->assertEquals(15, $result->perPage()); // Should default to 15
+        $this->assertEquals(1, $result->currentPage()); // Should default to 1
+    }
+
+    public function test_search_applies_default_ordering_by_id()
+    {
+        Product::factory()->count(10)->create();
+
+        $searchAttributes = []; // No ordering attributes
+        $paginationAttributes = [];
+
+        $result = $this->productService->search($searchAttributes, $paginationAttributes);
+
+        // Assert that the results are ordered by 'id' ascending
+        $items = $result->items();
+        $ids = array_column($items, 'id'); // Extract ids from the items
+
+        $sortedIds = $ids;
+        sort($sortedIds); // Sort in ascending order
+
+        $this->assertEquals($sortedIds, $ids); // Check if the original ids are in ascending order
+    }
+
+    public function search_applies_custom_ordering_by_name()
+    {
+        Product::factory()->count(10)->create();
+
+        $searchAttributes = ['order_field' => 'name', 'order_by' => 'desc'];
+        $paginationAttributes = [];
+
+        $result = $this->productService->search($searchAttributes, $paginationAttributes);
+
+        // Extract names from the items
+        $items = $result->items();
+        $names = array_column($items, 'name');
+
+        // Create a sorted copy of names
+        $sortedNames = $names;
+        rsort($sortedNames); // Sort in descending order
+
+        $this->assertEquals($sortedNames, $names); // Check if names are in descending order
+    }
+
+    public function test_search_applies_default_ordering_when_order_field_is_invalid()
+    {
+        Product::factory()->count(10)->create();
+
+        $searchAttributes = ['order_field' => 'invalid_field', 'order_by' => 'asc'];
+        $paginationAttributes = [];
+
+        $result = $this->productService->search($searchAttributes, $paginationAttributes);
+
+        // Assert that the results are ordered by 'id' ascending (default)
+        $items = $result->items();
+        $ids = array_column($items, 'id');
+
+        // Create a sorted copy of ids
+        $sortedIds = $ids;
+        sort($sortedIds); // Sort in ascending order
+
+        $this->assertEquals($sortedIds, $ids); // Check if ids are in ascending order
+    }
+
+    public function test_search_ignores_invalid_order_by_value_and_uses_default()
+    {
+        Product::factory()->count(10)->create();
+
+        $searchAttributes = ['order_field' => 'name', 'order_by' => 'invalid'];
+        $paginationAttributes = [];
+
+        $result = $this->productService->search($searchAttributes, $paginationAttributes);
+
+        // Assert that the results are ordered by 'name' ascending (default)
+        $items = $result->items();
+        $names = array_column($items, 'name');
+
+        // Create a sorted copy of names
+        $sortedNames = $names;
+        sort($sortedNames); // Sort in ascending order
+
+        $this->assertEquals($sortedNames, $names); // Check if names are in ascending order
     }
 }
