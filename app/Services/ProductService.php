@@ -152,6 +152,16 @@ class ProductService implements ProductServiceInterface
         return $product;
     }
 
+    public function view(int $product_id): Product
+    {
+        /** * @var Product $product */
+        $product = Product::find($product_id);
+        if (!$product) {
+            throw new \Exception("Product does not exist", 422);
+        }
+        return $product;
+    }
+
     public function delete(int $product_id): bool
     {
         /** * @var Product $product */
